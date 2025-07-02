@@ -1,13 +1,13 @@
 # 🎨 Gallerist Projesi
 
-Gallerist, sanat galerileri için geliştirilmiş bir içerik yönetim sistemidir. Sanatçılar, eserler ve sergiler kolayca yönetilebilir.
+Gallerist, Arac satısı için hazırlanmıs bir backend projesidir.Herhangi bir isterden api lar üzerinden servis saglar
 
 ---
 
 ## 🚀 Özellikler
 
-- 🖼️ Sanatçı ve eser yönetimi
-- 🗂️ Kategorilendirme ve filtreleme
+- 🖼️ Müsteri kayıt ve araç satısı
+-  Exception Mimarisi
 - 🔒 JWT ile güvenli giriş sistemi
 - 🌐 Swagger dokümantasyonu
 
@@ -17,31 +17,19 @@ Gallerist, sanat galerileri için geliştirilmiş bir içerik yönetim sistemidi
 
 | Katman | Teknoloji |
 |--------|-----------|
-| Backend | Java 17, Spring Boot |
+| Backend | Java 20, Spring Boot |
 | Veritabanı | PostgreSQL |
 | Güvenlik | Spring Security, JWT |
 | Dokümantasyon | Swagger/OpenAPI |
-| Test | JUnit, Mockito |
+| Test | JUnit |
 
 ---
 
 ## 📸 Ekran Görüntüleri
 
-![Ana Sayfa](images/homepage.png)
-![Sanatçı Paneli](images/artist-panel.png)
+![image](https://github.com/user-attachments/assets/af8cead4-6550-42e4-b0f9-68f5c9fd66cb)
 
-> Not: `/images` klasörünü repo içinde oluşturmalı ve içine görselleri koymalısın.
 
----
 
-## ⚙️ Kurulum
 
-```bash
-# Repoyu klonla
-git clone https://github.com/kullanici-adi/proje-adi.git
 
-# Proje dizinine gir
-cd proje-adi
-
-# Maven ile çalıştır
-./mvnw spring-boot:run
