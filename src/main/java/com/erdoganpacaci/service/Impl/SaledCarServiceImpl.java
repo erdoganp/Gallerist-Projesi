@@ -57,21 +57,64 @@ public class SaledCarServiceImpl implements SaledCarService {
         return customerUSDAmount;
     }
 
+    public BigDecimal convertCarAmountToUSD(Car car){
+        CurrencyRatesResponse currencyRatesResponse= currencyRatesService.getCurrencyRates(DateUtils.getCurrentDate(new Date()),DateUtils.getCurrentDate(new Date()));
+        BigDecimal usd=new BigDecimal(currencyRatesResponse.getItems().get(0).getUsd());
+
+        BigDecimal  CarUsdAmount=car.getPrice().divide(usd, 2, RoundingMode.HALF_UP);
+        return CarUsdAmount;
+    }
+
 
     public BigDecimal remainingCustomerAmount(Customer customer, Car car){
 
-        BigDecimal customerUSDAmount=convertCustomerAmountToUSD(customer);
-        BigDecimal remainingCustomerUSDAmount=customerUSDAmount.subtract(car.getPrice());
+        BigDecimal customerAmountbaseUSD;
+        BigDecimal carPricebaseUSD;
 
-      CurrencyRatesResponse currencyRatesResponse=  currencyRatesService.getCurrencyRates(DateUtils.getCurrentDate(new Date()),DateUtils.getCurrentDate(new Date()));
-        BigDecimal usd=new BigDecimal(currencyRatesResponse.getItems().get(0).getUsd());
+        boolean customerCurrencyUSD=checkCustomerCurrencyUSD(customer.getId());
 
-      return remainingCustomerUSDAmount.multiply(usd);
+
+
+
+        if(!checkCustomerCurrencyUSD(customer.getId())){
+            customerAmountbaseUSD=convertCustomerAmountToUSD(customer);
+        }
+
+        else {
+            customerAmountbaseUSD=customer.getAccount().getAmount();
+        }
+
+        if(!checkCarCurrencyUSD(car.getId())){
+
+            carPricebaseUSD=convertCarAmountToUSD(car);
+
+        }
+        else {
+            carPricebaseUSD=car.getPrice();
+        }
+
+
+
+        BigDecimal remainingCustomerUSDAmount=customerAmountbaseUSD.subtract(carPricebaseUSD);
+
+        if(!customerCurrencyUSD){
+            CurrencyRatesResponse currencyRatesResponse=  currencyRatesService.getCurrencyRates(DateUtils.getCurrentDate(new Date()),DateUtils.getCurrentDate(new Date()));
+            BigDecimal usd=new BigDecimal(currencyRatesResponse.getItems().get(0).getUsd());
+            return remainingCustomerUSDAmount.multiply(usd);
+
+        }
+
+        return remainingCustomerUSDAmount;
+
+
+
+
     }
 
 
 
     public boolean checkAmount(DtoSaledCarUI dtoSaledCarUI){
+
 
 
         Optional<Customer>optCustomer=customerRepository.findById(dtoSaledCarUI.getCustomerId());
@@ -84,13 +127,33 @@ public class SaledCarServiceImpl implements SaledCarService {
             throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST, dtoSaledCarUI.getCarId().toString()));
         }
 
-        BigDecimal customerUSDAmount=convertCustomerAmountToUSD(optCustomer.get());
 
-        if(customerUSDAmount.compareTo(optCar.get().getPrice()) ==0 ||customerUSDAmount.compareTo(optCar.get().getPrice()) >0 ){
+        BigDecimal customerAmountbaseUSD;
+        BigDecimal carPricebaseUSD;
 
-            return true;
+        if(!checkCustomerCurrencyUSD(dtoSaledCarUI.getCustomerId())){
+            customerAmountbaseUSD=convertCustomerAmountToUSD(optCustomer.get());
         }
 
+        else {
+            customerAmountbaseUSD=optCustomer.get().getAccount().getAmount();
+        }
+
+        if(!checkCarCurrencyUSD(dtoSaledCarUI.getCarId())){
+
+            carPricebaseUSD=convertCarAmountToUSD(optCar.get());
+
+        }
+        else {
+            carPricebaseUSD=optCar.get().getPrice();
+        }
+
+
+
+
+        if(customerAmountbaseUSD.compareTo(carPricebaseUSD)==0 || customerAmountbaseUSD.compareTo(carPricebaseUSD)> 0){
+            return true;
+        }
         return false;
 
     }
@@ -118,6 +181,25 @@ public class SaledCarServiceImpl implements SaledCarService {
 
     }
 
+
+    public boolean checkCustomerCurrencyUSD(Long customerId){
+        Optional<Customer> optCustomer=customerRepository.findById(customerId);
+
+        String currencyType=optCustomer.get().getAccount().getCurrencyType().name();
+        if(currencyType.equals("USD")){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkCarCurrencyUSD(Long carId){
+        Optional<Car> optCar=carRepository.findById(carId);
+        String currencyType=optCar.get().getCurrencyType().name();
+        if(currencyType.equals("USD")){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public DtoSaledCar buyCar(DtoSaledCarUI dtoSaledCarUI) {
