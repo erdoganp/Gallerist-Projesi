@@ -33,7 +33,7 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 ![image](https://github.com/user-attachments/assets/af8cead4-6550-42e4-b0f9-68f5c9fd66cb)
 ![image](https://github.com/user-attachments/assets/d3d9daea-26a2-455d-b997-8a3742444882)
 ![image](https://github.com/user-attachments/assets/71a4e88d-3967-4525-8b70-5e4c32081a48)
-
+![img.png](img.png)
 
 
 
