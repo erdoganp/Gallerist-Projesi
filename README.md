@@ -8,7 +8,7 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 
 ## 🚀 Özellikler
 
-- 🖼️ Müsteri kayıt ve araç satısı
+- 🚗 Müsteri kayıt ve araç satısı
 -  Exception Mimarisi
 -  USD ve TR olarak para birimlerini anlık merkez bankası verilerine göre kur kontrolu yapıp donusumunu gerceklestirir.
 - 🔒 JWT ile güvenli giriş sistemi
