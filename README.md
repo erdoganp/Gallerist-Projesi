@@ -9,8 +9,8 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 ## 🚀 Özellikler
 
 - 🚗 Müsteri kayıt ve araç satısı
--  Exception Mimarisi
--  USD ve TR olarak para birimlerini anlık merkez bankası verilerine göre kur kontrolu yapıp donusumunu gerceklestirir.
+- 🚨 Exception Mimarisi
+- 💰 USD ve TR olarak para birimlerini anlık merkez bankası verilerine göre kur kontrolu yapıp donusumunu gerceklestirir.
 - 🔒 JWT ile güvenli giriş sistemi
 - 🌐 Swagger dokümantasyonu
 
@@ -18,13 +18,13 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 
 ## 🛠️ Teknolojiler
 
-| Katman | Teknoloji |
-|--------|-----------|
-| Backend | Java 20, Spring Boot |
-| Veritabanı | PostgreSQL |
-| Güvenlik | Spring Security, JWT |
-| Dokümantasyon | Swagger/OpenAPI |
-| Test | JUnit |
+| Katman | Teknoloji                  |
+|--------|----------------------------|
+| Backend | Java 20, Spring Boot 3.4.4 |
+| Veritabanı | PostgreSQL 14              |
+| Güvenlik | Spring Security, JWT       |
+| Dokümantasyon | Swagger/OpenAPI            |
+| Test | JUnit                      |
 
 ---
 
