@@ -18,13 +18,13 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 
 ## 🛠️ Teknolojiler
 
-| Katman | Teknoloji               |
-|--------|-------------------------|
+| Katman | Teknoloji                  |
+|--------|----------------------------|
 | Backend | Java 20, Spring Boot 3.4.4 |
-| Veritabanı | PostgreSQL 14           |
-| Güvenlik | Spring Security, JWT    |
-| Dokümantasyon | Swagger/OpenAPI         |
-| Test | JUnit                   |
+| Veritabanı | PostgreSQL 14              |
+| Güvenlik | Spring Security, JWT       |
+| Dokümantasyon | Swagger/OpenAPI            |
+| Test | JUnit                      |
 
 ---
 
