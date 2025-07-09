@@ -36,6 +36,26 @@ Müsteri accountunda arac bedeline yeteri kadar para varsa satıs işlemi gercek
 ![img.png](img.png)
 
 
+## Kurulum
 
+### 📥 Projeyi Klonla
 
+```bash
+git clone https://github.com/erdoganp/Gallerist-Projesi.git
+
+📦 Bağımlılıkları Kurun
+Proje türüne göre:
+
+Java (Maven):
+./mvnw clean install
+
+🗄️ Veritabanı Kurulumu (Opsiyonel)
+
+npm run migrate
+# veya
+./mvnw flyway:migrate
+
+5. ▶️ Projeyi Başlatın
+
+./mvnw spring-boot:run
 
