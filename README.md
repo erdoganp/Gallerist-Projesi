@@ -55,7 +55,7 @@ npm run migrate
 # veya
 ./mvnw flyway:migrate
 
-▶️ Projeyi Başlatın
+5. ▶️ Projeyi Başlatın
 
-./mvnw spring-boot:run 
+./mvnw spring-boot:run
 
